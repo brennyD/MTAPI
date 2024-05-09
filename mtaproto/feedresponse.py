@@ -52,7 +52,7 @@ class TripStop(object):
 
         if name == 'time':
             raw_time = self._pb_data.arrival.time or self._pb_data.departure.time
-            return datetime.datetime.fromtimestamp(raw_time, TZ)
+            return int(datetime.datetime.fromtimestamp(raw_time, TZ).timestamp() * 1000)
         elif name == 'stop_id':
             return str(self._pb_data.stop_id[:3])
 

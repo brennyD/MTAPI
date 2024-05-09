@@ -33,7 +33,7 @@ class Mtapi(object):
                 'route': route_id,
                 'time': train_time
             })
-            self.last_update = feed_time
+            self.last_update = int(feed_time.timestamp() * 1000)
 
         def clear_train_data(self):
             self.trains['N'] = []
@@ -150,7 +150,7 @@ class Mtapi(object):
                 for update in entity.trip_update.stop_time_update:
                     trip_stop = TripStop(update)
 
-                    if trip_stop.time < self._last_update or trip_stop.time > max_time:
+                    if trip_stop.time < int(self._last_update.timestamp() * 1000) or trip_stop.time > int(max_time.timestamp() * 1000):
                         continue
 
                     stop_id = trip_stop.stop_id
