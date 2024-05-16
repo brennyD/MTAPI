@@ -94,6 +94,13 @@ def index():
         'readme': 'Visit https://github.com/jonthornton/MTAPI for more info'
         }
 
+@app.route('/time', methods=['GET'])
+def get_curr_time():
+    return {
+        "time": datetime.now().timestamp() * 1000
+    }
+
+
 @app.route('/by-location', methods=['GET'])
 @response_wrapper
 def by_location():
