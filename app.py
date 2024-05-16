@@ -97,7 +97,7 @@ def index():
 @app.route('/time', methods=['GET'])
 def get_curr_time():
     return {
-        "time": datetime.now().timestamp() * 1000
+        "time": int(datetime.now().timestamp() * 1000)
     }
 
 
